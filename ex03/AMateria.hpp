@@ -10,12 +10,11 @@ class AMateria {
 		AMateria( AMateria const & src );
 		~AMateria( void );
 		AMateria(std::string const & type);
-		std::string const & getType() const; //Returns the materia type
+		std::string const & getType() const;
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
 		AMateria	&operator= ( AMateria const & rhs );
 
-	protected:
-	[...]
+	//protected:
 };
 #endif

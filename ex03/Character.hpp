@@ -1,22 +1,36 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
+#define SLOT_FULL 1
+#define SLOT_EMPTY 0
 
-class ICharacter {
+class Character : public ICharacter {
 
 	public:
 
-		ICharacter( void );
-		ICharacter( ICharacter const & src );
-		~ICharacter( void );
-		virtual ~ICharacter() {}
-		virtual std::string const & getName() const = 0;
-		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(int idx) = 0;
-		virtual void use(int idx, ICharacter& target) = 0;
-		ICharacter	&operator= ( ICharacter const & rhs );
+		Character( std::string name="Anonymous");
+		void	deepCopy(Character const & src);
+		Character( Character const & src );
+		virtual ~Character( void );
+
+		std::string const & getName() const;
+		void equip(AMateria* m);
+		void unequip(int idx);
+		void use(int idx, Character& target);
+		Character	&operator= ( Character const & rhs );
+		AMateria	*getInventoryMateria(int index);	
+		bool	*getInventoryState( void );	
+		void	setInventoryState(int index, bool state);
+		bool	inventoryIsFull( void );
+		int		getIndexOfNextEmptySlot( void );
+		void	fillInventory(AMateria *newMateria, uint index);
+		void	dropFromInventory(uint index);
+		void	destroyInventory( AMateria **inventory );
 
 	private:
-
+		std::string _name;
+		AMateria **_inventory;
+		bool	_inventoryState[4]{0, 0, 0, 0};
 };
 #endif

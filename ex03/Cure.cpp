@@ -26,13 +26,15 @@ std::string const & Cure::getType() const {
 	return _type;
 };
 
-Cure* Cure::clone() const{
+Cure* Cure::clone() const {
 
 	Cure *clonedMateria = new Cure();
 	return clonedMateria;
 };
 
 void Cure::use(ICharacter& target){
+	std::cout << "* heals " << target;
+	std::cout << "'s wounds *\n" ; 
 
 };
 
