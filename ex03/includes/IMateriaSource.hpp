@@ -8,7 +8,6 @@ class IMateriaSource {
 
 		IMateriaSource( void );
 		IMateriaSource( IMateriaSource const & src );
-		~IMateriaSource( void );
 		virtual ~IMateriaSource() {}
 		virtual void learnMateria(AMateria*) = 0;
 		virtual AMateria* createMateria(std::string const & type) = 0;

@@ -1,6 +1,5 @@
-#include "MateriaSource.hpp"
-#include "AMateria.hpp"
-#include "MateriaSource.hpp"
+#include "./includes/AMateria.hpp"
+#include "./includes/MateriaSource.hpp"
 #include <iostream>
 
 MateriaSource::MateriaSource( void ){
@@ -9,6 +8,28 @@ MateriaSource::MateriaSource( void ){
 	_sourceMemory = new AMateria*[4];
 	_activeMemSlot = 0;
 	return ;
+};
+
+AMateria **MateriaSource::deepCopy( MateriaSource const & src ){
+
+	AMateria **_sourceMemoryDup = new AMateria*[4];
+
+	if (src._sourceMemory)	
+	{
+		int srcCurrentMemSlot = src.getSourceCurrentMemSlot();
+		setSourceCurrentMemSlot(srcCurrentMemSlot);
+		for (int i = 0; i < srcCurrentMemSlot; i++)
+		{
+			_sourceMemoryDup[i] =
+				src._sourceMemory[i]->clone();
+		}
+	}
+	else
+	{
+		setSourceCurrentMemSlot(0);
+		_sourceMemoryDup = nullptr;	
+	}
+	return _sourceMemoryDup;
 };
 
 MateriaSource::MateriaSource( MateriaSource const & src ){
@@ -24,15 +45,7 @@ MateriaSource::~MateriaSource( void ){
 	return;
 };
 
-AMateria *MateriaSource::getMemSlot( void ){
-
-	int currentMemSlot = getSourceCurrentMemSlot();
-
-
-	return AMateria;
-};
-
-int	MateriaSource::getSourceCurrentMemSlot( void ){
+int	MateriaSource::getSourceCurrentMemSlot( void ) const{
 
 	return _activeMemSlot;
 };
@@ -64,6 +77,9 @@ AMateria* MateriaSource::createMateria(std::string const & type){
 
 MateriaSource	&MateriaSource::operator= ( MateriaSource const & rhs ){
 
-	//this-> = ;
+	if (this != &rhs)
+	{
+		deepCopy(rhs);
+	}
 	return *this;
 };

@@ -8,13 +8,12 @@ class AMateria {
 
 		AMateria( void );
 		AMateria( AMateria const & src );
-		~AMateria( void );
 		AMateria(std::string const & type);
-		std::string const & getType() const;
+		virtual ~AMateria( void );
+		std::string const & getType() const = 0;
 		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);
+		virtual void use(ICharacter& target) = 0;
 		AMateria	&operator= ( AMateria const & rhs );
 
-	//protected:
 };
 #endif

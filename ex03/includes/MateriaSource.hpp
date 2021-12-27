@@ -14,10 +14,11 @@ class MateriaSource : public IMateriaSource {
 		void learnMateria(AMateria *materiaToLearn);
 		AMateria *createMateria(std::string const & type);
 		MateriaSource	&operator= ( MateriaSource const & rhs );
-		int	getSourceCurrentMemSlot( void );
+		int	getSourceCurrentMemSlot( void ) const;
 		void	setSourceCurrentMemSlot( int memSlot );
 //		AMateria *getSourceMemorySlot(int index);
 		AMateria *getNextMemSlot( void );
+		AMateria **deepCopy( MateriaSource const & src );
 	
 	private:
 		AMateria	**_sourceMemory;

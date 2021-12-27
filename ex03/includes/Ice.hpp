@@ -6,14 +6,15 @@ class Ice : public AMateria {
 
 	public:
 
-		Ice( void );
+		Ice( std::string const & type = "ice");
 		Ice( Ice const & src );
 		~Ice( void );
 
-		std::string const & getType() const; //Returns the materia type
-		virtual Ice* clone() const = 0;
+		std::string const & getType( void ) const;
+		void setType( std::string const & type);
+		virtual Ice* clone() const;
 		virtual void use(ICharacter& target);
-		Ice	&operator= ( Ice const & rhs );
+		Ice	&operator= ( const Ice & rhs );
 
 	private:
 		std::string	_type;

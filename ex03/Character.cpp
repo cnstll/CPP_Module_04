@@ -1,4 +1,4 @@
-#include "Character.hpp"
+#include "./includes/Character.hpp"
 #include <iostream>
 
 Character::Character( std::string name ) : _name(name)
@@ -85,19 +85,19 @@ bool	Character::inventoryIsFull( void ){
 		return (false);
 };
 
-void	Character::fillInventory(AMateria *newMateria, uint index){
+void	Character::fillInventory(AMateria *newMateria, int index){
 
 	_inventory[index] = newMateria;
 };
 
-void	Character::dropFromInventory(uint index){
+void	Character::dropFromInventory(int index){
 
 	_inventory[index] = NULL;
 };
 
 void Character::equip(AMateria* m){
 
-	uint currentInventoryIndex = getIndexOfNextEmptySlot();
+	int currentInventoryIndex = getIndexOfNextEmptySlot();
 
 	if (inventoryIsFull() == false)
 	{

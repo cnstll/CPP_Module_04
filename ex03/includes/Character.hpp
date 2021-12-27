@@ -2,6 +2,7 @@
 #define CHARACTER_HPP
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
+#include <string>
 #define SLOT_FULL 1
 #define SLOT_EMPTY 0
 
@@ -9,7 +10,7 @@ class Character : public ICharacter {
 
 	public:
 
-		Character( std::string name="Anonymous");
+		Character( std::string _name="Anonymous");
 		void	deepCopy(Character const & src);
 		Character( Character const & src );
 		virtual ~Character( void );
@@ -24,8 +25,8 @@ class Character : public ICharacter {
 		void	setInventoryState(int index, bool state);
 		bool	inventoryIsFull( void );
 		int		getIndexOfNextEmptySlot( void );
-		void	fillInventory(AMateria *newMateria, uint index);
-		void	dropFromInventory(uint index);
+		void	fillInventory(AMateria *newMateria, int index);
+		void	dropFromInventory(int index);
 		void	destroyInventory( AMateria **inventory );
 
 	private:

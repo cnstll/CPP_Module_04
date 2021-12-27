@@ -1,9 +1,9 @@
-#include "Cure.hpp"
+#include "./includes/AMateria.hpp"
+#include "./includes/Cure.hpp"
 #include <iostream>
-#include "AMateria.hpp"
 
-Cure::Cure( void ){
-
+Cure::Cure( std::string const & type ) : _type(type){
+	
 	std::cout << "Cure - Default constructor called\n";
 	return ;
 };
@@ -21,26 +21,32 @@ Cure::~Cure( void ){
 	return;
 };
 
-std::string const & Cure::getType() const {
+std::string const & Cure::getType(void) const{
 
 	return _type;
 };
 
-Cure* Cure::clone() const {
+void Cure::setType( std::string const & type) {
 
-	Cure *clonedMateria = new Cure();
-	return clonedMateria;
+	_type = type;
 };
 
-void Cure::use(ICharacter& target){
-	std::cout << "* heals " << target;
-	std::cout << "'s wounds *\n" ; 
+Cure	&Cure::operator= ( const Cure & rhs ){
 
-};
-
-Cure	&Cure::operator= ( Cure const & rhs ){
-
-	this-> = ;
+	this->setType(rhs.getType());
 	return *this;
 };
 
+Cure* Cure::clone() const{
+
+	Cure *cureClone = new Cure;
+
+	cureClone->setType(this->getType());
+	return (cureClone);
+};
+
+void Cure::use(ICharacter& target){
+
+	std::cout << "* heals ";
+	std::cout << target.getName() << "’s wounds *\n";
+};
