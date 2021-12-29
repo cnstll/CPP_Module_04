@@ -1,5 +1,5 @@
-#include "./includes/AMateria.hpp"
-#include "./includes/Ice.hpp"
+#include "AMateria.hpp"
+#include "Ice.hpp"
 #include <iostream>
 
 Ice::Ice( std::string const & type ) : _type(type){

@@ -1,5 +1,6 @@
-#include "./includes/AMateria.hpp"
-#include "./includes/Cure.hpp"
+//#include "AMateria.hpp"
+#include "Cure.hpp"
+#include "ICharacter.hpp"
 #include <iostream>
 
 Cure::Cure( std::string const & type ) : _type(type){

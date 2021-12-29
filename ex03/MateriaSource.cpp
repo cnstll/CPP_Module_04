@@ -1,5 +1,5 @@
-#include "./includes/AMateria.hpp"
-#include "./includes/MateriaSource.hpp"
+#include "AMateria.hpp"
+#include "MateriaSource.hpp"
 #include <iostream>
 
 MateriaSource::MateriaSource( void ){

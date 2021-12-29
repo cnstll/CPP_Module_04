@@ -10,7 +10,6 @@ class MateriaSource : public IMateriaSource {
 		MateriaSource( void );
 		MateriaSource( MateriaSource const & src );
 		~MateriaSource( void );
-		~MateriaSource();
 		void learnMateria(AMateria *materiaToLearn);
 		AMateria *createMateria(std::string const & type);
 		MateriaSource	&operator= ( MateriaSource const & rhs );

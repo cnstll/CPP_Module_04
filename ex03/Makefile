@@ -5,14 +5,15 @@ MateriaSource.cpp \
 Ice.cpp \
 Cure.cpp \
 Character.cpp
+#AMateria.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
 CXX=clang++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
-HXXHEADERS = includes
+#HXXHEADERS = -I ./includes
 
 .PHONY: all clean fclean re
 
@@ -22,7 +23,7 @@ $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -o $@ -c $^ -I ${HXXHEADERS}
+	$(CXX) $(CXXFLAGS) -o $@ -c $^
 
 clean :
 	rm -f $(OBJS)

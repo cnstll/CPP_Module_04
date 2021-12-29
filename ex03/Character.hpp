@@ -1,6 +1,6 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
-#include "AMateria.hpp"
+//#include "AMateria.hpp"
 #include "ICharacter.hpp"
 #include <string>
 #define SLOT_FULL 1
@@ -15,10 +15,10 @@ class Character : public ICharacter {
 		Character( Character const & src );
 		virtual ~Character( void );
 
-		std::string const & getName() const;
-		void equip(AMateria* m);
-		void unequip(int idx);
-		void use(int idx, Character& target);
+		virtual std::string const & getName() const;
+		virtual void equip(AMateria* m);
+		virtual void unequip(int idx);
+		virtual void use(int idx, ICharacter& target);
 		Character	&operator= ( Character const & rhs );
 		AMateria	*getInventoryMateria(int index);	
 		bool	*getInventoryState( void );	
@@ -32,6 +32,6 @@ class Character : public ICharacter {
 	private:
 		std::string _name;
 		AMateria **_inventory;
-		bool	_inventoryState[4]{0, 0, 0, 0};
+		bool	_inventoryState[4];
 };
 #endif

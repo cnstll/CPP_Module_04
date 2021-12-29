@@ -1,4 +1,6 @@
-#include "./includes/Character.hpp"
+#include "Character.hpp"
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 #include <iostream>
 
 Character::Character( std::string name ) : _name(name)
