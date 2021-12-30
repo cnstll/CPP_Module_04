@@ -1,6 +1,9 @@
-#include "AMateria.hpp"
+//#include "AMateria.hpp"
+//#include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
 #include <iostream>
+
+class AMateria;
 
 MateriaSource::MateriaSource( void ){
 
@@ -27,7 +30,7 @@ AMateria **MateriaSource::deepCopy( MateriaSource const & src ){
 	else
 	{
 		setSourceCurrentMemSlot(0);
-		_sourceMemoryDup = nullptr;	
+		_sourceMemoryDup = 0;	
 	}
 	return _sourceMemoryDup;
 };
@@ -39,9 +42,19 @@ MateriaSource::MateriaSource( MateriaSource const & src ){
 	return ;
 };
 
+void	MateriaSource::destroySource( void )
+{
+	for (int i = 0; i < (getSourceCurrentMemSlot() % 4); i++)
+	{
+		delete _sourceMemory[i];
+	}
+	delete [] _sourceMemory;
+};
+
 MateriaSource::~MateriaSource( void ){
 
 	std::cout << "MateriaSource - Destructor called\n";
+	destroySource();
 	return;
 };
 
@@ -57,21 +70,33 @@ void	MateriaSource::setSourceCurrentMemSlot( int memSlot ){
 void MateriaSource::learnMateria(AMateria *materiaToLearn){
 
 	int currentMemSlot = getSourceCurrentMemSlot();
-	AMateria *copy = materiaToLearn; //Check AMateria assignement
+	AMateria *copy = materiaToLearn;
 
-	delete _sourceMemory[currentMemSlot];
-	_sourceMemory[currentMemSlot] = copy;
+	if (currentMemSlot >= 4)
+		delete _sourceMemory[currentMemSlot % 4];
+	_sourceMemory[currentMemSlot % 4] = copy;
 	currentMemSlot++;
-	if (currentMemSlot > 3)
-		setSourceCurrentMemSlot(0);
-	else
-		setSourceCurrentMemSlot(++currentMemSlot);
+	setSourceCurrentMemSlot(currentMemSlot);
 };
+
+int	MateriaSource::findMateriaByType(std::string const typeToFind)
+{
+	int currentMemSlot = getSourceCurrentMemSlot();
+	int indexMateriaFound = -1;
+	for (int i = 0; i < currentMemSlot % 4; i++)
+	{
+		if (_sourceMemory[i]->getType() == typeToFind)
+		{
+			indexMateriaFound = i;
+		}
+	}
+	return indexMateriaFound;
+}
 
 AMateria* MateriaSource::createMateria(std::string const & type){
 
-	AMateria *createdMateria;
-
+	int indexOfMateria = findMateriaByType(type); 
+	AMateria *createdMateria = indexOfMateria != -1 ? _sourceMemory[indexOfMateria] : 0;
 	return (createdMateria);
 };
 

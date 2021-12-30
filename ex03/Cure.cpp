@@ -1,8 +1,9 @@
 //#include "AMateria.hpp"
 #include "Cure.hpp"
-#include "ICharacter.hpp"
+//#include "ICharacter.hpp"
 #include <iostream>
 
+Cure::Cure( void ) : _type("cure"){};
 Cure::Cure( std::string const & type ) : _type(type){
 	
 	std::cout << "Cure - Default constructor called\n";

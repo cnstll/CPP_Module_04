@@ -6,9 +6,9 @@ class IMateriaSource {
 
 	public:
 
-		IMateriaSource( void );
-		IMateriaSource( IMateriaSource const & src );
-		virtual ~IMateriaSource() {}
+		//IMateriaSource( void );
+		//IMateriaSource( IMateriaSource const & src );
+		virtual ~IMateriaSource() {};
 		virtual void learnMateria(AMateria*) = 0;
 		virtual AMateria* createMateria(std::string const & type) = 0;
 		IMateriaSource	&operator= ( IMateriaSource const & rhs );

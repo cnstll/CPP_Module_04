@@ -8,9 +8,9 @@ class Ice : public AMateria {
 
 		Ice( std::string const & type = "ice");
 		Ice( Ice const & src );
-		~Ice( void );
+		virtual ~Ice( void );
 
-		std::string const & getType( void ) const;
+		virtual std::string const & getType( void ) const;
 		void setType( std::string const & type);
 		virtual Ice* clone() const;
 		virtual void use(ICharacter& target);

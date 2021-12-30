@@ -9,14 +9,14 @@ class MateriaSource : public IMateriaSource {
 
 		MateriaSource( void );
 		MateriaSource( MateriaSource const & src );
-		~MateriaSource( void );
+		void destroySource(void);
+		virtual ~MateriaSource( void );
 		void learnMateria(AMateria *materiaToLearn);
 		AMateria *createMateria(std::string const & type);
 		MateriaSource	&operator= ( MateriaSource const & rhs );
 		int	getSourceCurrentMemSlot( void ) const;
 		void	setSourceCurrentMemSlot( int memSlot );
-//		AMateria *getSourceMemorySlot(int index);
-		AMateria *getNextMemSlot( void );
+		int	findMateriaByType(std::string const typeToFind);
 		AMateria **deepCopy( MateriaSource const & src );
 	
 	private:

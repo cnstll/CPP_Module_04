@@ -1,6 +1,5 @@
 #include "Character.hpp"
-#include "ICharacter.hpp"
-#include "AMateria.hpp"
+//#include "AMateria.hpp"
 #include <iostream>
 
 Character::Character( std::string name ) : _name(name)
@@ -22,7 +21,7 @@ if (src._inventory)
 	}
 }
 else
-	this->_inventory = nullptr;
+	this->_inventory = 0;
 };
 
 Character::Character( Character const & src ){
@@ -35,11 +34,12 @@ Character::Character( Character const & src ){
 
 void	Character::destroyInventory( AMateria **inventory )
 {
-	for (int i = 0; i < 4; i++)
-	{
-		delete inventory[i];
-	}
-	delete [] inventory; 
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	if (getInventoryState()[i] == 1)
+	//		delete inventory[i];
+	//}
+	delete [] inventory;
 };
 
 Character::~Character( void ){
@@ -53,7 +53,6 @@ std::string const & Character::getName() const {
 
 	return _name;
 };
-
 
 bool	*Character::getInventoryState( void ){
 
@@ -75,7 +74,7 @@ int		Character::getIndexOfNextEmptySlot( void ){
 			break;
 	}
 	if (indexOfEmptySlot == 4)
-		indexOfEmptySlot == -1;
+		indexOfEmptySlot = -1;
 	return (indexOfEmptySlot);
 };
 
@@ -110,14 +109,24 @@ void Character::equip(AMateria* m){
 
 void Character::unequip(int idx){
 
+	if (idx < 0 || idx > 3)
+	{
+		std::cerr << "ERROR: Index out of range \n";
+		return ;
+	}
 	setInventoryState(idx, 0);
 };
 
-void Character::use(int idx, Character& target){
+void Character::use(int idx, ICharacter& target){
 
+	if (idx < 0 || idx > 3)
+	{
+		std::cerr << "ERROR: Index out of range \n";
+		return ;
+	}
 	if (getInventoryState()[idx] == 1)
 	{
-		(getInventoryMateria(idx))->use(target);
+		_inventory[idx]->use(target);
 	}
 	else
 	{

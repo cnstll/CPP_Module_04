@@ -5,13 +5,13 @@ MateriaSource.cpp \
 Ice.cpp \
 Cure.cpp \
 Character.cpp
-#AMateria.cpp \
+#AMateria.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 CXX=clang++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
+CXXFLAGS = -g -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 #HXXHEADERS = -I ./includes
 
