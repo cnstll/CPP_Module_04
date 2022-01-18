@@ -9,7 +9,7 @@ Character.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CXX=clang++
+CXX=c++
 
 CXXFLAGS = -g -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
