@@ -16,7 +16,7 @@ class Brain {
 		void	setAnIdea( int index, std::string idea );
 
 	protected:
-		std::string	_ideas[100];
+		std::string	ideas[100];
 
 };
 #endif

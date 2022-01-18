@@ -7,8 +7,7 @@ class Cure : public AMateria {
 
 	public:
 
-		Cure( void );
-		Cure( std::string const & type);
+		Cure( std::string const & type ="cure");
 		Cure( Cure const & src );
 		virtual ~Cure( void );
 
@@ -19,7 +18,7 @@ class Cure : public AMateria {
 		Cure	&operator= ( const Cure & rhs );
 
 	private:
-		std::string	_type;
+		std::string	type;
 
 };
 #endif

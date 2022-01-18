@@ -2,7 +2,7 @@
 #include "Ice.hpp"
 #include <iostream>
 
-Ice::Ice( std::string const & type ) : _type(type){
+Ice::Ice( std::string const & typeValue ) : type(typeValue){
 	
 	std::cout << "Ice - Default constructor called\n";
 	return ;
@@ -11,7 +11,7 @@ Ice::Ice( std::string const & type ) : _type(type){
 Ice::Ice( Ice const & src ){
 
 	std::cout << "Ice - Copy constructor called\n";
-	*this = src;
+	this->setType(src.getType());
 	return ;
 };
 
@@ -23,23 +23,23 @@ Ice::~Ice( void ){
 
 std::string const & Ice::getType(void) const{
 
-	return _type;
+	return type;
 };
 
 void Ice::setType( std::string const & type) {
 
-	_type = type;
+	this->type = type;
 };
 
 Ice	&Ice::operator= ( const Ice & rhs ){
 
-	this->setType(rhs.getType());
+	(void)rhs;
 	return *this;
 };
 
 Ice* Ice::clone() const{
 
-	Ice *iceClone = new Ice;
+	Ice *iceClone = new Ice();
 
 	iceClone->setType(this->getType());
 	return (iceClone);

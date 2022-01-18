@@ -24,7 +24,7 @@ void Dog::deepCopy( Dog const & src ){
 Dog::Dog( Dog const & src ){
 
 	std::cout << "Dog - Copy constructor called\n";
-	Dog::deepCopy( src );
+	*this = src;
 	return ;
 };
 

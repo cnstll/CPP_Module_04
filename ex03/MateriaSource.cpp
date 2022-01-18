@@ -72,6 +72,7 @@ void MateriaSource::learnMateria(AMateria *materiaToLearn){
 	int currentMemSlot = getSourceCurrentMemSlot();
 	AMateria *copy = materiaToLearn;
 
+	std::cout << "Learning `" << materiaToLearn->getType() << "` on slot " << currentMemSlot << "...\n";
 	if (currentMemSlot >= 4)
 		delete _sourceMemory[currentMemSlot % 4];
 	_sourceMemory[currentMemSlot % 4] = copy;
@@ -83,11 +84,12 @@ int	MateriaSource::findMateriaByType(std::string const typeToFind)
 {
 	int currentMemSlot = getSourceCurrentMemSlot();
 	int indexMateriaFound = -1;
-	for (int i = 0; i < currentMemSlot % 4; i++)
+	for (int i = 0; i < currentMemSlot; i++)
 	{
-		if (_sourceMemory[i]->getType() == typeToFind)
+		if (_sourceMemory[i % 4]->getType() == typeToFind)
 		{
-			indexMateriaFound = i;
+			indexMateriaFound = i % 4;
+			break ;
 		}
 	}
 	return indexMateriaFound;
@@ -97,6 +99,13 @@ AMateria* MateriaSource::createMateria(std::string const & type){
 
 	int indexOfMateria = findMateriaByType(type); 
 	AMateria *createdMateria = indexOfMateria != -1 ? _sourceMemory[indexOfMateria] : 0;
+	if (indexOfMateria != -1)
+		std::cout << "Creating materia `" << type << "` from source #" << indexOfMateria << "...\n";
+	else
+	{
+		std::cout << "Materia creation failed: `" << type << "` unknown...\n";
+		return nullptr;
+	}
 	return (createdMateria);
 };
 

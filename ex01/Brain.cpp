@@ -23,7 +23,7 @@ Brain::~Brain( void ){
 std::string Brain::getIdeas ( int index ) const {
 
 	if (index < 100 && index >= 0)
-		return (_ideas[index]);
+		return (ideas[index]);
 	else
 		return (NULL);
 };
@@ -31,13 +31,13 @@ std::string Brain::getIdeas ( int index ) const {
 void	Brain::copyIdeas( Brain const * src ){
 
 	for (int index=0; index < 100; index++)
-		this->_ideas[index] = src->getIdeas(index);
+		this->ideas[index] = src->getIdeas(index);
 }
 
 
 void	Brain::setAnIdea( int index, std::string idea )
 {
-	this->_ideas[index] = idea;
+	this->ideas[index] = idea;
 }
 
 Brain	&Brain::operator= ( Brain const & rhs ){

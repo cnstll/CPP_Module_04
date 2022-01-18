@@ -27,18 +27,12 @@ else
 Character::Character( Character const & src ){
 
 	std::cout << "Character - Copy constructor called\n";
-	if (this != &src)
-		deepCopy(src);
+	*this = src;
 	return ;
 };
 
 void	Character::destroyInventory( AMateria **inventory )
 {
-	//for (int i = 0; i < 4; i++)
-	//{
-	//	if (getInventoryState()[i] == 1)
-	//		delete inventory[i];
-	//}
 	delete [] inventory;
 };
 
@@ -54,26 +48,16 @@ std::string const & Character::getName() const {
 	return _name;
 };
 
-bool	*Character::getInventoryState( void ){
-
-	return &_inventoryState[0]; 
-};	
-
-void	Character::setInventoryState(int index, bool state){
-
-	_inventoryState[index] = state;
-};
-
 int		Character::getIndexOfNextEmptySlot( void ){
 
 	int	indexOfEmptySlot = 0;
 	for (int i = 0; i < 4; i++)
 	{
 		indexOfEmptySlot = i;
-		if (getInventoryState()[i] == SLOT_EMPTY)	
+		if (_inventoryState[i] == SLOT_EMPTY)	
 			break;
 	}
-	if (indexOfEmptySlot == 4)
+	if (indexOfEmptySlot == 3 && _inventoryState[indexOfEmptySlot] == SLOT_FULL)
 		indexOfEmptySlot = -1;
 	return (indexOfEmptySlot);
 };
@@ -98,33 +82,37 @@ void	Character::dropFromInventory(int index){
 
 void Character::equip(AMateria* m){
 
-	int currentInventoryIndex = getIndexOfNextEmptySlot();
-
 	if (inventoryIsFull() == false)
 	{
+		int currentInventoryIndex = getIndexOfNextEmptySlot();
+		std::cout << "Adding `" << m->getType() << "` to inventory slot #" << currentInventoryIndex << " of " << this->getName() << "...\n";
 		fillInventory(m, currentInventoryIndex);
-		setInventoryState(currentInventoryIndex, 1);
+		_inventoryState[currentInventoryIndex] = SLOT_FULL; 
 	}
+	else
+		std::cout << "Inventory is full! Unequip before adding new materia...\n";
 };
 
 void Character::unequip(int idx){
 
 	if (idx < 0 || idx > 3)
 	{
-		std::cerr << "ERROR: Index out of range \n";
+		std::cerr << "ERROR: inventory index out of range \n";
 		return ;
 	}
-	setInventoryState(idx, 0);
+	else
+		std::cout << "Unequip slot #" << idx << " from "<< this->getName() << "'s inventory...\n";
+	_inventoryState[idx] = SLOT_EMPTY;
 };
 
 void Character::use(int idx, ICharacter& target){
 
 	if (idx < 0 || idx > 3)
 	{
-		std::cerr << "ERROR: Index out of range \n";
+		std::cerr << "ERROR: inventory index out of range \n";
 		return ;
 	}
-	if (getInventoryState()[idx] == 1)
+	if (_inventoryState[idx] == 1)
 	{
 		_inventory[idx]->use(target);
 	}

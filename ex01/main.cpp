@@ -5,33 +5,32 @@
 #include "WrongCat.hpp" 
 #include <iostream>
 #include <string>
-#define SIZE 2 
+#define SIZE 4 
 
 int main( void )
 {
     Animal *AnimArray[SIZE];
 
-	for (int index=0; index < SIZE/2; index++)
-    {
+	for (int index=0; index < SIZE/2; index++){
         AnimArray[index] = new Cat();
     }
-	for (int index=SIZE/2; index < SIZE; index++)
-    {
+	for (int index=SIZE/2; index < SIZE; index++){
         AnimArray[index] = new Dog();
     }
 
     std::cout << "\n>> Accessing makeSound in array of animals:\n";
-    AnimArray[0]->makeSound();
-    AnimArray[1]->makeSound();
+	for (int index=0; index < SIZE; index++){
+        AnimArray[index]->makeSound();
+    }
     
     {
         std::cout << "\n>> Can we Deep Copy Dog ?\n";
         std::cout << "\n>> Creating a original version of Dog...\n";
         Dog og;
         {
-            std::cout << "\n>> Creating a copy of Dog...\n";
+            std::cout << "\n>> Creating a copy of Dog...(in a sub-scope)\n";
             Dog copy(og);
-            std::cout << "\n>> Destroying copy of Dog...\n";
+            std::cout << "\n>> Destroying copy of Dog...(out of scope)\n";
         }
         std::cout << "\n>>...Without destroying original Dog.\n";
         og.makeSound();

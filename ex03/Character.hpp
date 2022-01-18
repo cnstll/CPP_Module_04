@@ -21,8 +21,6 @@ class Character : public ICharacter {
 		virtual void use(int idx, ICharacter& target);
 		Character	&operator= ( Character const & rhs );
 		AMateria	*getInventoryMateria(int index);	
-		bool	*getInventoryState( void );	
-		void	setInventoryState(int index, bool state);
 		bool	inventoryIsFull( void );
 		int		getIndexOfNextEmptySlot( void );
 		void	fillInventory(AMateria *newMateria, int index);

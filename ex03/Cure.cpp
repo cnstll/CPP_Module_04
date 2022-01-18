@@ -3,8 +3,7 @@
 //#include "ICharacter.hpp"
 #include <iostream>
 
-Cure::Cure( void ) : _type("cure"){};
-Cure::Cure( std::string const & type ) : _type(type){
+Cure::Cure( std::string const & typeValue ) : type(typeValue){
 	
 	std::cout << "Cure - Default constructor called\n";
 	return ;
@@ -13,7 +12,7 @@ Cure::Cure( std::string const & type ) : _type(type){
 Cure::Cure( Cure const & src ){
 
 	std::cout << "Cure - Copy constructor called\n";
-	*this = src;
+	this->setType(src.getType());
 	return ;
 };
 
@@ -25,23 +24,23 @@ Cure::~Cure( void ){
 
 std::string const & Cure::getType(void) const{
 
-	return _type;
+	return type;
 };
 
 void Cure::setType( std::string const & type) {
 
-	_type = type;
+	this->type = type;
 };
 
 Cure	&Cure::operator= ( const Cure & rhs ){
 
-	this->setType(rhs.getType());
+	(void)rhs;
 	return *this;
 };
 
 Cure* Cure::clone() const{
 
-	Cure *cureClone = new Cure;
+	Cure *cureClone = new Cure();
 
 	cureClone->setType(this->getType());
 	return (cureClone);

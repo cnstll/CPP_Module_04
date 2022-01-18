@@ -3,7 +3,7 @@
 #include "Dog.hpp" 
 #include <iostream>
 #include <string>
-#define SIZE 2 
+#define SIZE 4 
 
 int main( void )
 {
@@ -20,8 +20,9 @@ int main( void )
     }
 
     std::cout << "\n>> Accessing makeSound in array of animals:\n";
-    AnimArray[0]->makeSound();
-    AnimArray[1]->makeSound();
+	for (int index=0; index < SIZE; index++){
+        AnimArray[index]->makeSound();
+    }
     
     {
         std::cout << "\n>> Can we Deep Copy Dog ?\n";

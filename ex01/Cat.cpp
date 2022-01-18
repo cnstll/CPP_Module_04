@@ -23,7 +23,7 @@ void Cat::deepCopy( Cat const & src ){
 Cat::Cat( Cat const & src ){
 
 	std::cout << "Cat - Copy constructor called\n";
-	Cat::deepCopy( src );
+	*this = src;
 	return ;
 };
 

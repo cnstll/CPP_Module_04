@@ -17,7 +17,7 @@ class Ice : public AMateria {
 		Ice	&operator= ( const Ice & rhs );
 
 	private:
-		std::string	_type;
+		std::string	type;
 
 };
 #endif

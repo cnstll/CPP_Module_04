@@ -14,10 +14,12 @@ int main( void )
     const WrongAnimal* k = new WrongCat();
 
     std::cout <<  "\n>> Animal Names: " << std::endl;
+    //std::cout << meta->getType() << " " << std::endl;
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
     std::cout << k->getType() << " " << std::endl;
     std::cout <<  "\n>> Animal Noises: " << std::endl;
+    //meta->makeSound();
     i->makeSound();
     j->makeSound();
     k->makeSound();
