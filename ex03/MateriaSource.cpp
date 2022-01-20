@@ -104,7 +104,7 @@ AMateria* MateriaSource::createMateria(std::string const & type){
 	else
 	{
 		std::cout << "Materia creation failed: `" << type << "` unknown...\n";
-		return nullptr;
+		return NULL;
 	}
 	return (createdMateria);
 };

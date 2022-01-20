@@ -17,7 +17,7 @@ void Cat::deepCopy( Cat const & src ){
 		this->_brain->copyIdeas(src._brain);
 	}
 	else
-		this->_brain = nullptr;
+		this->_brain = NULL;
 };
 
 Cat::Cat( Cat const & src ){

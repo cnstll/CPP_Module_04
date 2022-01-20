@@ -18,7 +18,7 @@ void Dog::deepCopy( Dog const & src ){
 		this->_brain->copyIdeas(src._brain);
 	}
 	else
-		this->_brain = nullptr;
+		this->_brain = NULL;
 };
 
 Dog::Dog( Dog const & src ){

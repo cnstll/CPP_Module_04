@@ -12,9 +12,11 @@ int main()
 	IMateriaSource* src = new MateriaSource();
 	std::cout << std::endl;
 	std::cout << "Filling Materia Source...\n";
-	src->learnMateria(new Ice());
-	src->learnMateria(new Cure());
-	src->learnMateria(new Cure());
+	Cure *curePoison = new Cure();
+	Ice *iceShards = new Ice();
+	src->learnMateria(curePoison);
+	src->learnMateria(iceShards);
+	src->learnMateria(curePoison);
 	Cure cureYips("cure Yips");	
 	Cure *cureClone = cureYips.clone();	
 	std::cout << cureClone->getType() << std::endl;
@@ -65,5 +67,8 @@ int main()
 	delete bob;
 	delete me;
 	delete src;
+	delete curePoison;
+	delete iceShards;
+	delete tmp;
 	return 0;
 }
